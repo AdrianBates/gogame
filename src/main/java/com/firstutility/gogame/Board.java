@@ -15,9 +15,9 @@ public class Board {
 	}
 
 	public boolean isDead(int x, int y) {
-		
+
 		final List<Location> locationList = buildLocationList(x, y);
-		
+
 		for (Location location : locationList) {
 			if (!isSingleLocationDead(location.getX(), location.getY())) {
 				return false;
@@ -53,12 +53,7 @@ public class Board {
 	}
 
 	private boolean isSingleLocationDead(int x, int y) {
-		if (blocked(x, y - 1) && blocked(x, y + 1) && blocked(x - 1, y)
-				&& blocked(x + 1, y)) {
-			return true;
-		}
-
-		return false;
+		return blocked(x, y - 1) && blocked(x, y + 1) && blocked(x - 1, y) && blocked(x + 1, y);
 	}
 
 	private boolean blocked(int x, int y) {
