@@ -1,7 +1,5 @@
 package com.firstutility.gogame;
 
-import static com.firstutility.gogame.LocationListBuilder.aLocationList;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,16 +15,16 @@ public class Board {
 	}
 
 	public boolean isDead(int x, int y) {
-
-		boolean isDead = isSingleLocationDead(x, y, layout);
-
-		if (onBoard(x, y + 1) && layout[y + 1][x] == 1) {
-			isDead = isSingleLocationDead(x, y + 1, layout);
+		
+		final List<Location> locationList = buildLocationList(x, y);
+		
+		for (Location location : locationList) {
+			if (!isSingleLocationDead(location.getX(), location.getY())) {
+				return false;
+			}
 		}
-		if (onBoard(x + 1, y) && layout[y][x + 1] == 1) {
-			isDead = isSingleLocationDead(x + 1, y, layout);
-		}
-		return isDead;
+
+		return true;
 	}
 
 	public List<Location> buildLocationList(int x, int y) {
@@ -54,7 +52,7 @@ public class Board {
 		return blackLocations;
 	}
 
-	private boolean isSingleLocationDead(int x, int y, int[][] board) {
+	private boolean isSingleLocationDead(int x, int y) {
 		if (blocked(x, y - 1) && blocked(x, y + 1) && blocked(x - 1, y)
 				&& blocked(x + 1, y)) {
 			return true;
