@@ -18,13 +18,7 @@ public class Board {
 
 		final List<Location> locationList = buildLocationList(x, y);
 
-		for (Location location : locationList) {
-			if (!isSingleLocationDead(location.getX(), location.getY())) {
-				return false;
-			}
-		}
-
-		return true;
+		return areAllLocationsDead(locationList);
 	}
 
 	public List<Location> buildLocationList(int x, int y) {
@@ -52,7 +46,13 @@ public class Board {
 		return blackLocations;
 	}
 
-	private boolean isSingleLocationDead(int x, int y) {
+	private boolean areAllLocationsDead(final List<Location> locationList) {
+		return !locationList.stream().anyMatch(location -> !isSingleLocationDead(location));
+	}
+
+	private boolean isSingleLocationDead(Location location) {
+		final int x = location.getX();
+		final int y = location.getY();
 		return blocked(x, y - 1) && blocked(x, y + 1) && blocked(x - 1, y) && blocked(x + 1, y);
 	}
 
