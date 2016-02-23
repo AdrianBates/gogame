@@ -7,10 +7,10 @@ public class Board {
 
 	private static final int BLANK = 0;
 	private static final int BLACK = 1;
-	private int[][] layout;
+	private State[][] layout;
 	private List<Location> blackLocations = new ArrayList<Location>();
 
-	public Board(int[][] layout) {
+	public Board(State[][] layout) {
 		this.layout = layout;
 	}
 
@@ -57,11 +57,11 @@ public class Board {
 	}
 
 	private boolean blocked(int x, int y) {
-		return !onBoard(x, y) || layout[y][x] != BLANK;
+		return !onBoard(x, y) || layout[y][x] != State.E;
 	}
 
 	private boolean black(int x, int y) {
-		return onBoard(x, y) && layout[y][x] == BLACK;
+		return onBoard(x, y) && layout[y][x] == State.B;
 	}
 
 	private boolean onBoard(int x, int y) {
