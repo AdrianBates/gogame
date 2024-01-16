@@ -1,3 +1,3 @@
 # gogame
 
-An attempt at creating the rules of the game of Go.
+An attempt to use TDD to create the rules of the game of Go.
