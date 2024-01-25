@@ -151,6 +151,14 @@ public class BoardTest {
 		assertTrue("Should be dead", board.isDead(1,1));
 	}
 
+	@Test
+	public void testBlackPieceOnBottomRow_WhiteNotSurrounding_Alive() {
+		State[][] layout = {{E,E,E},
+				            {W,B,W}};
+		final Board board = new Board(layout);
+		assertFalse("Should be alive", board.isDead(1,1));
+	}
+
 	// Prove corners work
 	@Test
 	public void testBlackPieceTopLeftCorner_WhiteSurrounding_Dead() {
