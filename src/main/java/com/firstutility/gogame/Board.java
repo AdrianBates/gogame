@@ -5,8 +5,6 @@ import java.util.List;
 
 public class Board {
 
-	private static final int BLANK = 0;
-	private static final int BLACK = 1;
 	private State[][] layout;
 	private List<Location> blackLocations = new ArrayList<Location>();
 
