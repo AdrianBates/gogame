@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Board {
 
-	private State[][] layout;
-	private List<Location> blackLocations = new ArrayList<Location>();
+	private final State[][] layout;
+	private final List<Location> blackLocations = new ArrayList<>();
 
 	public Board(State[][] layout) {
 		this.layout = layout;
@@ -45,7 +45,7 @@ public class Board {
 	}
 
 	private boolean areAllLocationsDead(final List<Location> locationList) {
-		return !locationList.stream().anyMatch(location -> !isSingleLocationDead(location));
+		return locationList.stream().allMatch(this::isSingleLocationDead);
 	}
 
 	private boolean isSingleLocationDead(Location location) {
